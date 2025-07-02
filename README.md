@@ -1,2 +1,2 @@
 # < POLAR >
-Official website.
+Official placeholder website, waiting for a designer.
