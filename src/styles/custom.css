@@ -136,6 +136,12 @@ body {
   margin-bottom: 30px;
 }
 
+.white-box a {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: normal;
+}
+
 #intro {
   padding-left: 30px;
   padding-right: 30px;
@@ -324,6 +330,7 @@ button,
 
 .navigation-menu {
   padding-bottom: 30px !important;
+  padding-right: 30px;
 }
 
 .nav-logo {
@@ -529,7 +536,11 @@ button,
 
 /* responsive */
 
-@media (max-width: 939px) {
+@media (max-width: 941px) {
+  .nav-logo.text {
+    display: none;
+  }
+
   #intro,
   #core {
     padding-top: 20px;
@@ -549,18 +560,8 @@ button,
     max-width: 200px;
   }
 
-  .victory-box {
-    gap: 10px;
-  }
-
   .nav-link.icon {
     margin: 0;
-  }
-
-  .hollow-button {
-    display: inline-block;
-    width: 245px;
-    margin-bottom: 20px !important;
   }
 
   .navigation-bar {
@@ -701,6 +702,12 @@ button,
     color: var(--white);
     background-color: rgba(0, 0, 0, 0.5) !important;
     font-weight: bold;
+  }
+
+  .hollow-button {
+    display: inline-block;
+    width: 245px;
+    margin-bottom: 20px !important;
   }
 
   #victories .white-box {
