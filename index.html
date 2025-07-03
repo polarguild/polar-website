@@ -50,7 +50,8 @@
             <a href="#intro" class="navigation-link nav-link word">INTRO</a>
             <a href="#core" class="navigation-link nav-link word">FOCUS</a>
             <a href="#victories" class="navigation-link nav-link word">VICTORIES</a>
-            <a href="#" class="navigation-link nav-link word" onclick="alert('COMING SOON!'); return false;">SHOP</a>
+            <a href="#" id="openSoonModalBtn" class="navigation-link nav-link word">SHOP</a>
+            <a href="#" id="openShoutoutModalNav" class="navigation-link nav-link word nav-shoutout">SHOUTOUTS</a>
             <span class="icons">
               <a href="https://discord.com/invite/polarguild" class="navigation-link nav-link icon" target="_blank">
                 <img src="/assets/icons/discord.svg" alt="Discord" class="social-icon">
@@ -99,6 +100,9 @@
                     allowfullscreen>
                   </iframe>
                 </div>
+                <button id="openShoutoutModalBtn" class="open-shoutout-modal-btn hollow-button">
+                Shoutouts
+              </button>
                 <!-- <p class="paragraph p-long white-box typewriter">
                   TH3RM4L PHASE TRANSITION_ DETECTED _ FILE / POLR >>WARNING// _CRYSTALLIZATION CAUTION _ TRACTION FAILURE . STABILITY _▚▚ COMPROMISED
                 </p> -->
@@ -107,7 +111,6 @@
           </div>
         </div>
       </div>
-    </div>
     </div>
     <div id="core" class="section full-height" tabindex="-1">
     <div class="container">
@@ -345,8 +348,27 @@
           </span>
       </div>
     </div>
+
+    <div id="shoutoutModal" class="shoutout-modal">
+      <div id="shoutoutModalContainer" class="white-box shoutout-modal-container">
+        <span id="closeShoutoutModalBtn" class="close-shoutout-modal-btn">&times;</span>
+        <h3>THANK YOU</h3>
+        <p>T0 THΞ T0P P0LΛR SUPP0RTΞRS</p>
+        <div id="shoutoutList" class="shoutout-list">
+          <!-- shoutout list populated here with js -->
+        </div>
+      </div>
+    </div>
+
+    <div id="soonModal" class="soon-modal">
+      <div id="soonModalContainer" class="white-box soon-modal-container">
+        <span id="closeSoonModalBtn" class="close-soon-modal-btn">&times;</span>
+        <h3>COMING SOON</h3>
+        <p>P0LΛR SH0P IS 0N THΞ WΛY</p>
+      </div>
+    </div>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="module" src="./src/scripts/webflow.js"></script>
-    <script type="module" src="./src/scripts/custom.js"></script>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>

@@ -16,10 +16,15 @@
   --turquoise: #57c5eb;
   /* --light-turquoise: #a9dff3; */
   /* --blue: #1e3374; */
+  --navy: #0d4068;
+  --navy-transparent: rgba(13, 64, 104, 0.95);
 
   --red-glow: drop-shadow(0 0 4px var(--red)) drop-shadow(0 0 8px var(--red)) drop-shadow(0 0 12px var(--red));
 
   --blue-glow: drop-shadow(0 0 4px var(--turquoise)) drop-shadow(0 0 8px var(--turquoise)) drop-shadow(0 0 12px var(--turquoise));
+
+  --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 @font-face {
@@ -452,10 +457,6 @@ button, [type="button"], [type="reset"] {
 /* tablet - large */
 
 @media screen and (max-width: 941px) {
-  .container:not(#intro .container) {
-    max-width: 728px;
-  }
-
   .hidden-main {
     display: inherit !important;
   }
@@ -896,7 +897,7 @@ button, [type="button"], [type="reset"] {
 
 /* tablet - small */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 941px) {
   .nav[data-collapse="small"] .nav-menu {
     display: none;
   }
@@ -960,7 +961,6 @@ button, [type="button"], [type="reset"] {
 .tab-content {
   display: block;
   position: relative;
-  overflow: hidden;
 }
 
 .tab-pane {
