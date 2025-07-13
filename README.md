@@ -24,6 +24,7 @@ It's meant to act as a lightweight info hub and landing page.
 
 ## Repo Structure
 
+```
 assets/
 ├── aoc/                         ← AoC logos
 ├── backgrounds/                ← Site background images
@@ -45,3 +46,4 @@ README.md                       ← This file
 CNAME                           ← GitHub Pages domain config
 robots.txt                      ← SEO/crawler control
 sitemap.xml                     ← SEO sitemap
+```
