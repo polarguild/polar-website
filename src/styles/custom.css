@@ -896,7 +896,9 @@ button,
     margin-bottom: 15px;
   }
 
-
+  .who-put {
+    display: none;
+  }
 }
 
 @media (max-width: 259px) {
