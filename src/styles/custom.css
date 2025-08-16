@@ -313,7 +313,8 @@ body {
   width: 200px;
 }
 
-.squads-modal-container {
+.squads-modal-container,
+.shoutout-modal-container {
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   overscroll-behavior: contain;
