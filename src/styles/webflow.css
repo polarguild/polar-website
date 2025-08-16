@@ -2,6 +2,7 @@
 
 :root {
   --black: #000;
+  --black-transparent: rgba(0, 0, 0, 0.2);
   --white: #fcfeff;
   --red: #e7191e;
   /* --dark-gray: #680070; */
@@ -9,18 +10,17 @@
   /* --dark-gray: #3c3c3c; */
   /* --dark-gray: #5a6062; */
   /* --dark-gray: #595f6d; */
-  --black: #000;
   /* --dark-gray: #4a4f5c; */
   --gray: #b2b6bc;
   --light-gray: #dbe1e5;
   --turquoise: #57c5eb;
   /* --light-turquoise: #a9dff3; */
-  /* --blue: #1e3374; */
+  /* --blue: #1e3374; */;
   --navy: #0d4068;
   --navy-transparent: rgba(13, 64, 104, 0.95);
+  --dark-navy-transparent: rgba(0, 0, 0, 0.6);
 
   --red-glow: drop-shadow(0 0 4px var(--red)) drop-shadow(0 0 8px var(--red)) drop-shadow(0 0 12px var(--red));
-
   --blue-glow: drop-shadow(0 0 4px var(--turquoise)) drop-shadow(0 0 8px var(--turquoise)) drop-shadow(0 0 12px var(--turquoise));
 
   --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);

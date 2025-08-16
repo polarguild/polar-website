@@ -121,7 +121,7 @@ body {
 }
 
 .white-box {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--dark-navy-transparent);
   margin-left: auto;
   margin-right: auto;
   box-shadow: var(--box-shadow);
@@ -975,9 +975,25 @@ button,
   position: relative;
 }
 
-.squads-modal-container #squadsList img {
+.squads-modal-container .squads-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.squads-modal-container .squads-list > span {
+  background: var(--dark-navy-transparent);
+  border-radius: 16px;
+  padding: 10px !important;
+  box-shadow: var(--box-shadow-light);
+}
+
+.squads-modal-container .squads-list img {
   width: 200px;
   height: 200px;
+  opacity: 1 !important;
+  padding: 10px;
 }
 
 .soon-modal-container {
@@ -1018,14 +1034,18 @@ button,
   padding-top: 15px;
 }
 
+.squads-modal-container #squadsList img,
 .shoutout-name {
   color: var(--red);
-  padding-top: 15px !important;
   flex: 1 1 auto;
   max-width: 45ch;
   min-width: 10ch;
   margin-bottom: 0;
   box-shadow: var(--box-shadow-light);
+}
+
+.shoutout-name {
+  padding-top: 15px !important;
 }
 
 @media (max-width: 500px) {
@@ -1048,5 +1068,10 @@ button,
     background-color: transparent;
     color: var(--white);
     font-weight: bold;
+  }
+
+  .squads-modal-container .squads-list img {
+    width: 150px;
+    height: 150px;
   }
 }

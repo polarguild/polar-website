@@ -25,25 +25,17 @@ It's meant to act as a lightweight info hub and landing page.
 ## Repo Structure
 
 ```
-assets/
-├── aoc/                         ← AoC logos
-├── backgrounds/                ← Site background images
-├── icons/                      ← UI SVG icons (Discord, Twitch, etc.)
-├── polar/                      ← POLAR logos and preview images
-favicon.ico                     ← Site favicon
+assets/                         ← Images
+favicon.ico                     ← Favicon
 
 src/
-├── scripts/
-│   ├── custom.js               ← Custom JavaScript logic
-│   └── webflow.js              ← Webflow-exported JS
-├── styles/
-│   ├── custom.css              ← Your custom CSS
-│   └── webflow.css             ← Webflow-exported CSS
+├── scripts/                    ← JavaScript logic & data
+├── styles/                     ← CSS
 
-index.html                      ← Main HTML file
-index.js                        ← Optional site entry script
+index.html                      ← HTML
+index.js                        ← JavaScript imports
 README.md                       ← This file
-CNAME                           ← GitHub Pages domain config
+CNAME                           ← Domain config
 robots.txt                      ← SEO/crawler control
 sitemap.xml                     ← SEO sitemap
 ```
