@@ -50,8 +50,9 @@
             <a href="#intro" class="navigation-link nav-link word">INTRO</a>
             <a href="#core" class="navigation-link nav-link word">FOCUS</a>
             <a href="#victories" class="navigation-link nav-link word">VICTORIES</a>
-            <a href="#" id="openSoonModalBtn" class="navigation-link nav-link word">SHOP</a>
+            <a href="#" id="openSquadsModalNav" class="navigation-link nav-link word nav-squads">SQUADS</a>
             <a href="#" id="openShoutoutModalNav" class="navigation-link nav-link word nav-shoutout">SHOUTOUTS</a>
+            <a href="#" id="openSoonModalBtn" class="navigation-link nav-link word">SHOP</a>
             <span class="icons">
               <a href="https://discord.com/invite/polarguild" class="navigation-link nav-link icon" target="_blank">
                 <img src="/assets/icons/discord.svg" alt="Discord" class="social-icon">
@@ -100,9 +101,12 @@
                     allowfullscreen>
                   </iframe>
                 </div>
+                <button id="openSquadsModalBtn" class="open-squads-modal-btn hollow-button">
+                  Squads
+                </button>                
                 <button id="openShoutoutModalBtn" class="open-shoutout-modal-btn hollow-button">
-                Shoutouts
-              </button>
+                  Shoutouts
+                </button>
                 <!-- <p class="paragraph p-long white-box typewriter">
                   TH3RM4L PHASE TRANSITION_ DETECTED _ FILE / POLR >>WARNING// _CRYSTALLIZATION CAUTION _ TRACTION FAILURE . STABILITY _▚▚ COMPROMISED
                 </p> -->
@@ -148,7 +152,7 @@
             <img src="/assets/icons/crown.svg" alt="Crown Icon" />
             <div class="core-text">
               <b>World Boss Supremacy</b><br class="quarter-br">
-              Every World Boss is ours to seize—the squad always delivers victory.
+              Every World Boss is ours to seize—the squads always delivers victory.
               <a href="https://www.youtube.com/watch?v=nv9J4QowN1s" target="_blank">
                 <img src="/assets/icons/youtube.svg" alt="YouTube Icon" class="yt-icon"/>
               </a>
@@ -348,6 +352,15 @@
           </span>
       </div>
     </div>
+
+    <div id="squadsModal" class="squads-modal">
+      <div id="squadsModalContainer" class="white-box squads-modal-container">
+        <span id="closeSquadsModalBtn" class="close-squads-modal-btn">&times;</span>
+        <h3>SQUADS</h3>
+        <p>WH0 PUT P0LΛR 0N T0P</p>
+        <div id="squadsList" class="squads-list"></div>
+      </div>
+    </div>    
 
     <div id="shoutoutModal" class="shoutout-modal">
       <div id="shoutoutModalContainer" class="white-box shoutout-modal-container">

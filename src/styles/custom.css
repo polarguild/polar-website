@@ -307,8 +307,10 @@ body {
   border-radius: 10px;
 }
 
+.open-squads-modal-btn,
 .open-shoutout-modal-btn {
   margin-top: 35px;
+  width: 200px;
 }
 
 /* cursors */
@@ -361,6 +363,7 @@ button,
   padding-top: 18px;
 }
 
+.nav-squads,
 .nav-shoutout {
   display: none;
 }
@@ -615,10 +618,12 @@ button,
     padding-bottom: 15px !important;
   }
 
+  .open-squads-modal-btn,
   .open-shoutout-modal-btn {
     display: none !important;
   }
 
+  .nav-squads,
   .nav-shoutout {
     display: block;
   }
@@ -915,6 +920,7 @@ button,
 
 /* modals */
 
+.squads-modal,
 .shoutout-modal,
 .soon-modal {
   display: none;
@@ -929,16 +935,19 @@ button,
   z-index: 1000;
 }
 
+.squads-modal.showing,
 .shoutout-modal.showing,
 .soon-modal.showing {
   display: block;
 }
 
+.squads-modal.visible,
 .shoutout-modal.visible,
 .soon-modal.visible {
   opacity: 1;
 }
 
+.close-squads-modal-btn,
 .close-shoutout-modal-btn,
 .close-soon-modal-btn {
   float: right;
@@ -951,11 +960,13 @@ button,
   text-shadow: var(--box-shadow-light);
 }
 
+.close-squads-modal-btn:hover,
 .close-shoutout-modal-btn:hover,
 .close-soon-modal-btn:hover {
   filter: var(--red-glow) !important;
 }
 
+.squads-modal-container,
 .shoutout-modal-container,
 .soon-modal-container {
   background-color: var(--navy-transparent);
@@ -964,10 +975,16 @@ button,
   position: relative;
 }
 
+.squads-modal-container #squadsList img {
+  width: 200px;
+  height: 200px;
+}
+
 .soon-modal-container {
   padding-top: 35px;
 }
 
+.squads-modal-container h3,
 .shoutout-modal-container h3,
 .soon-modal-container h3 {
   color: var(--white);
@@ -977,6 +994,7 @@ button,
   font-weight: bold;
 }
 
+.squads-modal-container p,
 .shoutout-modal-container p,
 .soon-modal-container p {
   color: var(--light-gray);

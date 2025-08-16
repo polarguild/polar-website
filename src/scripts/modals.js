@@ -1,4 +1,71 @@
+
+import { squads } from './squads.js';
 import { subscribers } from './subscribers.js';
+
+// squads modal
+
+function populateSquads() {
+  const container = document.getElementById('squadsList');
+  if (!container || container.children.length > 0) return;
+
+  squads.forEach(s => {
+    const item = document.createElement('span');
+    const img = document.createElement('img');
+    img.src = s.coat;
+    img.alt = `${s.name} coat of arms`;
+
+    item.appendChild(img);
+    container.appendChild(item);
+  });
+}
+
+const squadsModal = document.getElementById('squadsModal');
+const openSquadsButtons = [
+  document.getElementById('openSquadsModalBtn'),
+  document.getElementById('openSquadsModalNav')
+];
+const closeSquadsButton = document.getElementById('closeSquadsModalBtn');
+const squadsModalContainer = document.getElementById('squadsModalContainer');
+
+openSquadsButtons.forEach(btn => {
+  if (btn) {
+    btn.onclick = e => {
+      e.preventDefault();
+      if (squadsModal.classList.contains('visible')) {
+        squadsModal.classList.remove('visible');
+        setTimeout(() => squadsModal.classList.remove('showing'), 300);
+      } else {
+        squadsModal.classList.add('showing');
+        requestAnimationFrame(() => {
+          squadsModal.classList.add('visible');
+          populateSquads();
+        });
+      }
+    };
+  }
+});
+
+if (closeSquadsButton) {
+  closeSquadsButton.onclick = () => {
+    squadsModal.classList.remove('visible');
+    setTimeout(() => squadsModal.classList.remove('showing'), 300);
+  };
+}
+
+window.addEventListener('click', e => {
+  if (squadsModal.classList.contains('visible') &&
+      !squadsModalContainer.contains(e.target)) {
+    squadsModal.classList.remove('visible');
+    setTimeout(() => squadsModal.classList.remove('showing'), 300);
+  }
+});
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && squadsModal.classList.contains('visible')) {
+    squadsModal.classList.remove('visible');
+    setTimeout(() => squadsModal.classList.remove('showing'), 300);
+  }
+});
 
 // shoutout modal
 
