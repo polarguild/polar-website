@@ -20,6 +20,10 @@ export const squads = [
         coat: "/assets/squads/polars-pillagers.png"
     },
     {
+        name: "Polaroos",
+        coat: "/assets/squads/polaroos.png"
+    },
+    {
         name: "Power Bears",
         coat: "/assets/squads/power-bears.png"
     }
