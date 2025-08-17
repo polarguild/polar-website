@@ -1,11 +1,15 @@
 export const squads = [
     {
-        name: "Knights of the Crimson Rose",
-        coat: "/assets/squads/knights-of-the-crimson-rose.png"
+        name: "HUGE",
+        coat: "/assets/squads/huge.png"
     },
     {
         name: "Isle of Misfit Toys",
         coat: "/assets/squads/isle-of-misfit-toys.png"
+    },
+    {
+        name: "Knights of the Crimson Rose",
+        coat: "/assets/squads/knights-of-the-crimson-rose.png"
     },
     {
         name: "Nanook's Guardians",
@@ -17,6 +21,6 @@ export const squads = [
     },
     {
         name: "Power Bears",
-        coat: "/assets/squads/power-bears-s1.png"
+        coat: "/assets/squads/power-bears.png"
     }
 ];
