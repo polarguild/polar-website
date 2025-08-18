@@ -1,5 +1,8 @@
 export const squads = [
     {
+        name: "Grey Knights",
+        coat: "/assets/squads/grey-knights.png"
+    },    {
         name: "HUGE",
         coat: "/assets/squads/huge.png"
     },
