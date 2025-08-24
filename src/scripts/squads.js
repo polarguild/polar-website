@@ -6,6 +6,11 @@ export const squads = [
         name: "HUGE",
         coat: "/assets/squads/huge.png"
     },
+    ,
+    {
+        name: "Incognito",
+        coat: "/assets/squads/incognito.png"
+    },
     {
         name: "Isle of Misfit Toys",
         coat: "/assets/squads/isle-of-misfit-toys.png"
@@ -29,5 +34,9 @@ export const squads = [
     {
         name: "Power Bears",
         coat: "/assets/squads/power-bears.png"
+    },
+    {
+        name: "Squad X",
+        coat: "/assets/squads/squad-x.png"
     }
 ];
