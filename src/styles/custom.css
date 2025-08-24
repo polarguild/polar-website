@@ -943,8 +943,12 @@ button,
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  max-width: 80%;
   z-index: 1000;
+}
+
+.shoutout-modal,
+.soon-modal {
+  max-width: 800px;
 }
 
 .squads-modal.showing,
