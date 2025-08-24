@@ -29,6 +29,10 @@ export const squads = [
         coat: "/assets/squads/nanooks-guardians.png"
     },
     {
+        name: "Polar Meme Team",
+        coat: "/assets/squads/polar-meme-team.png"
+    },
+    {
         name: "POLAR's Pillagers",
         coat: "/assets/squads/polars-pillagers.png"
     },
