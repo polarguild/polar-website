@@ -11,7 +11,6 @@ export const squads = [
         name: "HUGE",
         coat: "/assets/squads/huge.png"
     },
-    ,
     {
         name: "Incognito",
         coat: "/assets/squads/incognito.png"
