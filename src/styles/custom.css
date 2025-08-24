@@ -951,6 +951,10 @@ button,
   max-width: 800px;
 }
 
+.squads-modal {
+  max-width: 1600px;
+}
+
 .squads-modal.showing,
 .shoutout-modal.showing,
 .soon-modal.showing {
