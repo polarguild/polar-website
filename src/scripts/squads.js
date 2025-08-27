@@ -1,5 +1,9 @@
 export const squads = [
     {
+        name: "By Fang and Frost",
+        coat: "/assets/squads/by-fang-and-frost.png"
+    },
+    {
         name: "Dad Bods",
         coat: "/assets/squads/dad-bods.png"
     },
@@ -38,6 +42,10 @@ export const squads = [
     {
         name: "Power Bears",
         coat: "/assets/squads/power-bears.png"
+    },
+    {
+        name: "South Side Inks",
+        coat: "/assets/squads/south-side-inks.png"
     },
     {
         name: "Squad X",
