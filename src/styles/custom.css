@@ -1095,3 +1095,9 @@ button,
     height: 55vw;
   }
 }
+
+.victory-box > .aoc-realm {
+  min-width: 220px !important;
+  flex: 0 0 calc(50% - 0.5rem) !important;
+  max-width: calc(50% - 0.5rem) !important;
+}
