@@ -1,25 +1,20 @@
-export const subscribers =[
+export const subscribers = [
+  ".lexicat",
   "adrian912",
-  "crabbard",
+  "apk",
   "fuzzyamoeba",
   "hannahavacyn",
-  "ichorftw",
-  "interscope8",
   "itchybeehole",
   "jjucetin",
   "knightmare_88",
   "laloop62",
   "lucky5261",
   "maou96",
-  "ole_bear",
+  "mariocerame",
+  "night.noturno",
   "omightis",
-  "rasmanit",
-  "remixx2316",
+  "seetsuma001",
   "shaymining",
   "the_wiseguy",
-  "tkbouttabagz",
-  "tmugsy",
-  "voncheeto",
-  "yjovain",
-  ".lexicat"
-]
+  "yjovain"
+];
