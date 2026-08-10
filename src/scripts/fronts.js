@@ -119,12 +119,15 @@ export const fronts = [
       },
       {
         name: 'Steam Early Access (Resna)',
+        video: 'yBxM1QUqD5A',
         groups: [
           {
             title: 'Live Combat',
             items: [
               { text: 'Undefeated — decisive victory' },
               { text: 'World First & Only Harbinger Clear', video: 's80ToDzxBjI' },
+              { text: 'World First Tumok Kill', video: 'Y-H5-_7k_nc' },
+              { text: 'World First Firebrand Kill', video: 'ZI0gCh-mwQM' },
               { text: 'World First level 25' },
             ],
           },
