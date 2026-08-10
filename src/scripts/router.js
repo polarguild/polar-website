@@ -61,9 +61,12 @@ export function startRouter() {
     toggle.setAttribute('aria-expanded', String(open));
   });
 
-  // any in-app link closes the mobile menu
+  // an in-app link closes the mobile menu, and so does tapping anywhere
+  // outside it — otherwise the only way out is the toggle or Escape
   document.addEventListener('click', e => {
-    if (e.target.closest('a[href^="#/"]')) closeMenu();
+    if (e.target.closest('a[href^="#/"]')) return closeMenu();
+    if (!nav?.classList.contains('is-open')) return;
+    if (!e.target.closest('#nav') && !e.target.closest('.nav-toggle')) closeMenu();
   });
 
   document.addEventListener('keydown', e => {

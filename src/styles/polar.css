@@ -149,6 +149,13 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid var(--hairline);
   background: linear-gradient(180deg, rgba(4, 7, 13, 0.94), rgba(4, 7, 13, 0.72));
   backdrop-filter: blur(10px);
+
+  /* Lifts the header — and the fixed mobile menu inside it — above .stage.
+     Without this both are z-index:auto, so they paint in DOM order and the
+     stage (later in the document) covers the open menu. Modals sit at 100
+     and still cover the header. */
+  position: relative;
+  z-index: 20;
 }
 
 .brand {
