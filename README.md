@@ -18,6 +18,24 @@ is Google Fonts, plus a Raider.IO call for live raid progression.
 All changes pushed to `main` are automatically deployed to
 [polarguild.org](https://polarguild.org) via GitHub Pages.
 
+## The previous site
+
+The Webflow-based scrolling page that ran until the 2026 redesign is kept in
+full, at the exact commit that was serving polarguild.org:
+
+| | |
+|---|---|
+| tag | `v1-webflow-site` |
+| branch | `pre-redesign-backup` |
+
+```bash
+git checkout v1-webflow-site        # browse it
+git checkout v1-webflow-site -- .   # restore it wholesale onto a branch
+```
+
+`polish-pass` also survives as a branch: the content and accessibility fixes
+applied to the old design, before the rebuild.
+
 ## Architecture
 
 The site is an **app shell, not a scrolling page**. A fixed header and status
