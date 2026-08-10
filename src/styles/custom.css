@@ -1376,17 +1376,24 @@ a.front-link:hover {
   margin: -8px 0 0;
 }
 
+/* Grid rather than flex: with flex-basis the browser packed three campaigns
+   onto a row at 200px each and orphaned the fourth, which forced entries like
+   "First group to max level on server" onto two lines. auto-fit gives a firm
+   two-up on desktop and one-up on mobile, and keeps rows aligned.
+   Padding is tighter than .victory-box's 40px to buy the columns width back. */
 .record-body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  justify-items: center;
+  align-items: start;
+  gap: 12px 30px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .record-campaign {
-  flex: 1 1 240px;
-  min-width: 220px;
-  max-width: 300px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .record-list {

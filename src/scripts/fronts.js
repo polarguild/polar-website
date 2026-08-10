@@ -123,8 +123,8 @@ export const fronts = [
           {
             title: 'Live Combat',
             items: [
-              { text: 'Undefeated — decisive server victory' },
-              { text: 'World First & Only Harbinger Raid Clear', video: 's80ToDzxBjI' },
+              { text: 'Undefeated — decisive victory' },
+              { text: 'World First & Only Harbinger Clear', video: 's80ToDzxBjI' },
               { text: 'World First level 25' },
             ],
           },
