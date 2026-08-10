@@ -28,7 +28,6 @@ views; the page itself never scrolls.
 Home     #/          identity, featured video, headline numbers
 Fronts   #/fronts    the games POLAR is currently fielding a team in
 Record   #/record    the archive, one game at a time via the switcher
-Squads   #/squads    the squad crests
 Join     #/join      what we look for, how to apply
 ```
 
@@ -47,7 +46,8 @@ assets/                         ← images (AVIF) and icons
 src/
 ├── scripts/
 │   ├── fronts.js               ← DATA: every game, past and present
-│   ├── squads.js               ← DATA: squad crests
+│   ├── squads.js               ← DATA: squad crests (unused; the Squads
+│   │                                 view was removed, kept for re-adding)
 │   ├── subscribers.js          ← DATA: supporter names
 │   ├── render.js               ← builds views from the data above
 │   ├── router.js               ← hash routing + mobile menu
@@ -98,6 +98,10 @@ Things that are easy to trip over when editing:
 - **Modals** are opened by any `[data-modal="<id>"]` control and close on the X,
   a backdrop click, or Escape. Add one by writing the markup with a matching
   `id="modal-<id>"` — no JavaScript changes.
+- **`height: auto` on images is load-bearing.** Tags carry `width`/`height` so
+  the browser reserves space, but those are presentation hints — without
+  `height: auto` in the reset they pin the rendered height and distort the
+  image. Rules needing a fixed size set both dimensions.
 - **The design system is one file.** Colours, type, spacing and motion are all
   custom properties at the top of `polar.css`. Change them there, not inline.
 - **Contrast.** Small labels use `--gray-dim`, which is tuned to stay above

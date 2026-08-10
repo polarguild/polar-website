@@ -6,7 +6,6 @@ const ROUTES = {
   '/':        { view: 'view-home',   title: 'POLAR Guild' },
   '/fronts':  { view: 'view-fronts', title: 'Active Fronts — POLAR' },
   '/record':  { view: 'view-record', title: 'The Record — POLAR' },
-  '/squads':  { view: 'view-squads', title: 'Squads — POLAR' },
   '/join':    { view: 'view-join',   title: 'Join — POLAR' },
 };
 

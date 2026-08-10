@@ -1,5 +1,4 @@
 import { activeFronts, archivedFronts } from './fronts.js';
-import { squads } from './squads.js';
 import { subscribers } from './subscribers.js';
 
 const YT = 'https://www.youtube.com/watch?v=';
@@ -158,28 +157,6 @@ function renderRecord() {
   draw(0);
 }
 
-/* ---------------------------------------------------------------- squads */
-
-function renderSquads() {
-  const mount = document.getElementById('squadsGrid');
-  if (!mount || mount.children.length) return;
-
-  const frag = document.createDocumentFragment();
-  squads.forEach(s => {
-    const card = el('div', 'panel squad');
-    const img = el('img');
-    img.src = s.coat;
-    img.alt = `${s.name} coat of arms`;
-    img.width = 200;
-    img.height = 200;
-    img.loading = 'lazy';
-    card.appendChild(img);
-    card.appendChild(el('span', null, s.name));
-    frag.appendChild(card);
-  });
-  mount.appendChild(frag);
-}
-
 /* ------------------------------------------------------------ shoutouts */
 
 function renderShoutouts() {
@@ -240,7 +217,6 @@ async function applyLive() {
 export function renderAll() {
   renderFronts();
   renderRecord();
-  renderSquads();
   renderShoutouts();
 
   const year = document.getElementById('footerYear');

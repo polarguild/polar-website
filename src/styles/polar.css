@@ -77,7 +77,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-img, svg { display: block; max-width: 100%; }
+/* `height: auto` is load-bearing: the tags carry width/height so the browser
+   can reserve space, but those attributes are presentation hints. Without this
+   they pin the rendered height and the image is distorted. Rules that need a
+   fixed size (.brand img, .social img, .pillar img) set both dimensions. */
+img, svg { display: block; max-width: 100%; height: auto; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 a { color: inherit; text-decoration: none; }
 
@@ -696,38 +700,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 a:hover .yt { opacity: 1; filter: var(--red-glow); }
-
-/* --------------------------------------------------------------------------
-   SQUADS
-   -------------------------------------------------------------------------- */
-
-.squads-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(122px, 1fr));
-  gap: 16px;
-}
-
-.squad {
-  display: grid;
-  gap: 8px;
-  justify-items: center;
-  padding: 14px 10px 12px;
-  transition: border-color var(--fast) var(--ease), transform var(--fast) var(--ease);
-}
-
-.squad:hover { border-color: var(--hairline-strong); transform: translateY(-3px); }
-.squad img { width: 100%; max-width: 96px; aspect-ratio: 1; object-fit: contain; }
-
-.squad span {
-  font-family: var(--display);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--gray);
-  line-height: 1.35;
-}
 
 /* --------------------------------------------------------------------------
    JOIN
