@@ -18,7 +18,10 @@ body {
 .banner-image {
   padding-top: 40px;
   width: 90%;
-  max-height: auto !important;
+  /* required so the width/height attributes on the tag act as an aspect-ratio
+     hint (which reserves space and avoids layout shift) rather than pinning
+     the rendered height. Replaces an invalid `max-height: auto`. */
+  height: auto;
   /* max-width: 90vh !important; */
   max-width: 500px !important;
   padding-right: 10px;
@@ -269,6 +272,8 @@ body {
 
 .aoc-logo {
   max-width: 300px;
+  width: 100%;
+  height: auto;
   margin-bottom: 30px;
 }
 
@@ -355,6 +360,9 @@ button,
 
 .nav-logo {
   height: 26px;
+  /* the tags carry width/height so the browser can reserve space; without this
+     the width attribute would pin the rendered width and stretch the logo */
+  width: auto;
 }
 
 .nav-link {
@@ -970,7 +978,14 @@ button,
 .close-squads-modal-btn,
 .close-shoutout-modal-btn,
 .close-soon-modal-btn {
-  float: right;
+  /* reset the UA button styling — these render as bare glyphs */
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  line-height: 1;
+
   cursor: pointer;
   color: var(--red);
   font-size: 200%;
@@ -1093,5 +1108,35 @@ button,
   .squads-modal-container .squads-list img {
     width: 55vw;
     height: 55vw;
+  }
+}
+
+/* login link — replaces the inline padding-top that used to sit on the anchor */
+
+#discord-login {
+  padding-top: 20px;
+  white-space: nowrap;
+}
+
+/* focus */
+
+/* The nav and buttons had no visible keyboard focus state at all. Scoped to
+   :focus-visible so it only shows for keyboard users, not on mouse click. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--turquoise);
+  outline-offset: 3px;
+}
+
+/* motion */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

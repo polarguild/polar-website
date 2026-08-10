@@ -39,3 +39,32 @@ CNAME                           ← Domain config
 robots.txt                      ← SEO/crawler control
 sitemap.xml                     ← SEO sitemap
 ```
+
+## Local Development
+
+There is no build step. Serve the repo root over HTTP so the absolute
+`/assets/...` paths and the ES module in `index.js` resolve:
+
+```
+python3 -m http.server 8000
+```
+
+Then open <http://localhost:8000>. Opening `index.html` via `file://` will not
+work — ES modules are blocked on that scheme.
+
+## Conventions
+
+A few things that are easy to trip over when editing:
+
+- **Images are AVIF.** Everything except `assets/polar/link-preview.png` (the
+  Open Graph image, which social scrapers need in a widely supported format)
+  and `favicon.ico`. Encode new art with
+  `avifenc -q 72 -s 4 source.png out.avif`, resized to about 2× its display
+  size. The originals live in git history.
+- **`<img>` tags carry `width`/`height`.** These reserve space and prevent
+  layout shift, but they are also presentation hints: if CSS sets only one
+  dimension, set the other to `auto` in CSS or the tag will pin it.
+- **Squad crests** are data, not markup — add them to `src/scripts/squads.js`
+  and the modal picks them up.
+- **Modals** share one implementation in `src/scripts/modals.js`. Add a new one
+  by appending an entry to the `modals` array, not by copying the logic.
