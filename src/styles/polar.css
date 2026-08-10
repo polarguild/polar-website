@@ -384,9 +384,11 @@ a { color: inherit; text-decoration: none; }
 
 .home {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* weighted toward the video — the wordmark still gets its full 440px at
+     1280, and the player gains the rest of the extra width */
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   align-items: center;
-  gap: clamp(24px, 5vw, 64px);
+  gap: clamp(24px, 4vw, 56px);
 }
 
 .home-mark {

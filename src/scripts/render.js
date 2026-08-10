@@ -1,5 +1,6 @@
 import { activeFronts, archivedFronts } from './fronts.js';
 import { subscribers } from './subscribers.js';
+import { onRoute } from './router.js';
 
 const YT = 'https://www.youtube.com/watch?v=';
 
@@ -212,12 +213,43 @@ async function applyLive() {
   }
 }
 
+/* -------------------------------------------------------- featured video */
+
+// The embed autoplays muted, because browsers refuse audible autoplay. Two
+// courtesies on top of that: visitors who ask for reduced motion get a still
+// player, and the video is paused when Home is left so it is not running
+// unseen behind another view.
+function setupFeaturedVideo() {
+  const frame = document.getElementById('featuredVideo');
+  if (!frame) return;
+
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) frame.src = frame.src.replace('autoplay=1', 'autoplay=0');
+
+  // YouTube's iframe API over postMessage — no extra script needed, the embed
+  // already carries enablejsapi=1.
+  const command = func => {
+    try {
+      frame.contentWindow?.postMessage(
+        JSON.stringify({ event: 'command', func, args: [] }), '*');
+    } catch {
+      /* player not ready or not same-origin yet — nothing to do */
+    }
+  };
+
+  onRoute(path => {
+    if (path !== '/') command('pauseVideo');
+    else if (!reduced) command('playVideo');
+  });
+}
+
 /* ------------------------------------------------------------------ init */
 
 export function renderAll() {
   renderFronts();
   renderRecord();
   renderShoutouts();
+  setupFeaturedVideo();
 
   const year = document.getElementById('footerYear');
   if (year) year.textContent = new Date().getFullYear();

@@ -69,7 +69,7 @@
       <main class="stage" id="stage">
         <!-- HOME -->
         <section class="view" id="view-home" aria-label="Home">
-          <div class="view-inner home">
+          <div class="view-inner view-wide home">
             <div>
               <img class="home-mark" src="/assets/polar/polar-logo-cyberpunk.avif" alt="POLAR" width="1000" height="439" fetchpriority="high" />
               <p class="home-tag">
@@ -81,7 +81,7 @@
                 <a class="btn btn-primary" href="https://discord.com/invite/polarguild" target="_blank" rel="noopener">
                   <img src="/assets/icons/discord.svg" alt="" />Join the Discord
                 </a>
-                <a class="btn btn-ghost" href="#/fronts">Where we're deployed</a>
+                <a class="btn btn-ghost" href="#/fronts">Active Fronts</a>
               </div>
 
               <dl class="home-meta">
@@ -102,13 +102,17 @@
 
             <figure class="panel home-video">
               <div class="frame">
+                <!-- muted is not optional: browsers block audible autoplay.
+                     enablejsapi lets the router pause it when Home is left. -->
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/INThqHXxM0Y"
+                  id="featuredVideo"
+                  src="https://www.youtube-nocookie.com/embed/INThqHXxM0Y?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0&amp;enablejsapi=1"
                   title="Ashes of Creation - Farewell"
                   loading="lazy"
+                  allow="autoplay; encrypted-media; picture-in-picture"
                   allowfullscreen></iframe>
               </div>
-              <figcaption>Featured — Ashes of Creation, Farewell</figcaption>
+              <figcaption>Featured — Ashes of Creation, Farewell · starts muted</figcaption>
             </figure>
           </div>
         </section>
