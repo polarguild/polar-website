@@ -118,12 +118,13 @@ export const fronts = [
         ],
       },
       {
-        name: 'Phase Steam (Resna)',
+        name: 'Steam Early Access (Resna)',
         groups: [
           {
             title: 'Live Combat',
             items: [
               { text: 'Undefeated — decisive server victory' },
+              { text: 'World First & Only Harbinger Raid Clear', video: 's80ToDzxBjI' },
               { text: 'World First level 25' },
             ],
           },
