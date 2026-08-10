@@ -123,12 +123,17 @@ export const fronts = [
         groups: [
           {
             title: 'Live Combat',
+            items: [{ text: 'Undefeated — decisive victory' }],
+          },
+          {
+            // grouped so each line can be just the target, rather than repeating
+            // "World First" four times and wrapping in a narrow column
+            title: 'World Firsts',
             items: [
-              { text: 'Undefeated — decisive victory' },
-              { text: 'World First & Only Harbinger Clear', video: 's80ToDzxBjI' },
-              { text: 'World First Tumok Kill', video: 'Y-H5-_7k_nc' },
-              { text: 'World First Firebrand Kill', video: 'ZI0gCh-mwQM' },
-              { text: 'World First level 25' },
+              { text: 'Harbinger — first & only', video: 's80ToDzxBjI' },
+              { text: 'Tumok', video: 'Y-H5-_7k_nc' },
+              { text: 'Firebrand', video: 'ZI0gCh-mwQM' },
+              { text: 'Level 25' },
             ],
           },
         ],

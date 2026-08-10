@@ -1,10 +1,8 @@
-import './src/scripts/webflow.js';
-import './src/scripts/modals.js';
-import { renderFronts } from './src/scripts/fronts-render.js';
+import { renderAll } from './src/scripts/render.js';
+import { startRouter } from './src/scripts/router.js';
+import { startModals } from './src/scripts/modals.js';
 
-renderFronts();
-
-// The markup carries a hardcoded year so the footer is still correct with JS
-// disabled; this just keeps it from going stale.
-const footerYear = document.getElementById('footerYear');
-if (footerYear) footerYear.textContent = new Date().getFullYear();
+// Views are rendered once up front, then the router just shows and hides them.
+renderAll();
+startModals();
+startRouter();
