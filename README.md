@@ -69,7 +69,7 @@ src/
 │   ├── subscribers.js          ← DATA: supporter names
 │   ├── render.js               ← builds views from the data above
 │   ├── router.js               ← hash routing + mobile menu
-│   └── modals.js               ← shared modal behaviour
+│   └── dialog.js               ← shared modal behaviour
 └── styles/
     └── polar.css               ← the whole design system
 
