@@ -64,6 +64,14 @@ A few things that are easy to trip over when editing:
 - **`<img>` tags carry `width`/`height`.** These reserve space and prevent
   layout shift, but they are also presentation hints: if CSS sets only one
   dimension, set the other to `auto` in CSS or the tag will pin it.
+- **Games and results are data, not markup.** `src/scripts/fronts.js` drives
+  both the Active Fronts cards and the Victories records. To retire a campaign
+  flip its `status` from `active` to `concluded`; to add a new game, append an
+  entry. No HTML changes.
+- **Live progression.** A front with a `live` block is topped up from
+  Raider.IO at page load (public, no API key). The values committed in
+  `fronts.js` render on their own, so the card stays correct with JS off or
+  if Raider.IO is unreachable — keep them roughly current anyway.
 - **Squad crests** are data, not markup — add them to `src/scripts/squads.js`
   and the modal picks them up.
 - **Modals** share one implementation in `src/scripts/modals.js`. Add a new one
