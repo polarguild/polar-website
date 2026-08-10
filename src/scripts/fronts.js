@@ -72,9 +72,9 @@ export const fronts = [
           {
             title: 'Tournaments',
             items: [
-              { text: '8v8: 1st Place', with: { label: 'Enveus', url: 'https://guildcontrol.com/' }, video: 'uDJWAP7RnJg' },
+              { text: '8v8: 1st Place', video: 'uDJWAP7RnJg' },
               { text: '8v8: 1st Place', video: '3KOwpzS-Gg0' },
-              { text: 'Naval PR: 1st Place', with: { label: 'Enveus', url: 'https://guildcontrol.com/' } },
+              { text: 'Naval PR: 1st Place' },
             ],
           },
           {

@@ -84,7 +84,7 @@ function renderListItem(item) {
 
   row.appendChild(document.createTextNode(item.text));
 
-  // "8v8: 1st Place (w/ Enveus)" — the ally is a real link
+  // optional "(w/ <ally>)" credit, where the ally name links out
   if (item.with) {
     row.appendChild(document.createTextNode(' (w/ '));
     const a = el('a', null, item.with.label);
