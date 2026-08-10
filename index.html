@@ -62,7 +62,6 @@
               <img src="/assets/icons/youtube.svg" alt="" width="15" height="15" />
             </a>
           </span>
-          <a class="btn-login" href="https://api.polarguild.org/auth/discord/login">Login</a>
         </div>
       </header>
 
@@ -102,17 +101,18 @@
 
             <figure class="panel home-video">
               <div class="frame">
-                <!-- muted is not optional: browsers block audible autoplay.
-                     enablejsapi lets the router pause it when Home is left. -->
+                <!-- No autoplay: browsers only ever permit it muted, and a
+                     silent hero video was not the point. enablejsapi still
+                     lets the router pause it when Home is left. -->
                 <iframe
                   id="featuredVideo"
-                  src="https://www.youtube-nocookie.com/embed/INThqHXxM0Y?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0&amp;enablejsapi=1"
+                  src="https://www.youtube-nocookie.com/embed/INThqHXxM0Y?playsinline=1&amp;rel=0&amp;enablejsapi=1"
                   title="Ashes of Creation - Farewell"
                   loading="lazy"
-                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allow="encrypted-media; picture-in-picture"
                   allowfullscreen></iframe>
               </div>
-              <figcaption>Featured — Ashes of Creation, Farewell · starts muted</figcaption>
+              <figcaption>Featured — Ashes of Creation, Farewell</figcaption>
             </figure>
           </div>
         </section>

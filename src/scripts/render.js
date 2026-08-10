@@ -215,16 +215,16 @@ async function applyLive() {
 
 /* -------------------------------------------------------- featured video */
 
-// The embed autoplays muted, because browsers refuse audible autoplay. Two
-// courtesies on top of that: visitors who ask for reduced motion get a still
-// player, and the video is paused when Home is left so it is not running
-// unseen behind another view.
+// The video does not autoplay. Every browser permits autoplay only when the
+// player is muted, and there is no parameter or workaround that lifts that —
+// so an autoplaying embed would have been a silent one.
+//
+// It is still worth pausing on navigation: if a visitor starts the video and
+// then moves to another view, the audio would otherwise keep playing from a
+// panel they can no longer see.
 function setupFeaturedVideo() {
   const frame = document.getElementById('featuredVideo');
   if (!frame) return;
-
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) frame.src = frame.src.replace('autoplay=1', 'autoplay=0');
 
   // YouTube's iframe API over postMessage — no extra script needed, the embed
   // already carries enablejsapi=1.
@@ -239,7 +239,6 @@ function setupFeaturedVideo() {
 
   onRoute(path => {
     if (path !== '/') command('pauseVideo');
-    else if (!reduced) command('playVideo');
   });
 }
 
