@@ -285,6 +285,22 @@ a { color: inherit; text-decoration: none; }
 
 .view-wide { width: min(1320px, 100%); }
 
+/* Fronts, Record and Join must share one heading position — centring each view
+   as a whole put their headings at different heights, so moving between them
+   jumped. The block fills the view instead, which makes its height the same on
+   every one, the heading sits at the top of it, and the content centres in the
+   space that is left so nothing ends up bottom-heavy.
+   Home is deliberately outside this: it is a hero, not a titled section. */
+.view-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-block: 0;
+}
+
+.view-section > .view-head { flex: none; }
+.view-section > :last-child { margin-block: auto; }
+
 /* --------------------------------------------------------------------------
    section headings
    -------------------------------------------------------------------------- */
