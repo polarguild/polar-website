@@ -183,9 +183,15 @@ async function applyLive() {
   if (!res.ok) throw new Error(`raider.io ${res.status}`);
   const data = await res.json();
 
-  // Deepest mythic clear, not the most recent raid — a fresh single-boss tier
-  // would otherwise replace a full clear and read as a downgrade.
-  const best = Object.entries(data.raid_progression || {})
+  // Single-boss raids do not count — a 1/1 M on a one-boss raid is not a tier
+  // and the raid team does not quote it. Raider.IO currently lists two
+  // (sporefall, the-tidebound-grotto), so filter on boss count rather than
+  // naming them.
+  const tiers = Object.entries(data.raid_progression || {})
+    .filter(([, r]) => r.total_bosses > 1);
+
+  // Of the real tiers, the deepest mythic clear.
+  const best = tiers
     .reduce((a, e) => (e[1].mythic_bosses_killed > (a?.[1].mythic_bosses_killed ?? -1) ? e : a), null);
   if (!best || best[1].mythic_bosses_killed === 0) return;
 
