@@ -235,6 +235,58 @@ async function applyLive() {
   if (rank.region > 0) bar('statRegion', `#${rank.region}`);
 }
 
+/* ------------------------------------------------------ view alignment */
+
+// Fronts, Record and Join each carry a heading, and each is vertically centred.
+// Left alone that puts every heading at a different height, because each view
+// centres its own content — so moving between them makes the heading jump.
+//
+// Giving all three the same height fixes it without pinning anything to the
+// top: equal heights centre identically, so the headings line up while the
+// group still sits in the middle of the view.
+function equaliseSections() {
+  const sections = [...document.querySelectorAll('.view-section')];
+  if (!sections.length) return;
+
+  const reveal = [];
+  let tallest = 0;
+
+  sections.forEach(section => {
+    const view = section.closest('.view');
+    // a hidden view has no layout, so un-hide it just long enough to measure
+    if (view.hidden) {
+      view.hidden = false;
+      view.style.visibility = 'hidden';
+      reveal.push(view);
+    }
+    section.style.minHeight = '';
+    tallest = Math.max(tallest, section.offsetHeight);
+  });
+
+  // never force a view taller than the stage — that would make every view
+  // scroll just because one of them is long
+  const probe = sections[0].closest('.view');
+  const pad = parseFloat(getComputedStyle(probe).paddingTop) +
+              parseFloat(getComputedStyle(probe).paddingBottom);
+  const height = Math.min(tallest, probe.clientHeight - pad);
+
+  sections.forEach(s => { s.style.minHeight = `${height}px`; });
+  reveal.forEach(v => { v.hidden = true; v.style.visibility = ''; });
+}
+
+function watchSections() {
+  equaliseSections();
+
+  // fonts change the measurements, and so does a resize
+  document.fonts?.ready.then(equaliseSections);
+
+  let frame = 0;
+  addEventListener('resize', () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(equaliseSections);
+  });
+}
+
 /* -------------------------------------------------------- featured video */
 
 // The video does not autoplay. Every browser permits autoplay only when the
@@ -271,6 +323,7 @@ export function renderAll() {
   renderRecord();
   renderShoutouts();
   setupFeaturedVideo();
+  watchSections();
 
   const year = document.getElementById('footerYear');
   if (year) year.textContent = new Date().getFullYear();

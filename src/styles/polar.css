@@ -285,21 +285,20 @@ a { color: inherit; text-decoration: none; }
 
 .view-wide { width: min(1320px, 100%); }
 
-/* Fronts, Record and Join must share one heading position — centring each view
-   as a whole put their headings at different heights, so moving between them
-   jumped. The block fills the view instead, which makes its height the same on
-   every one, the heading sits at the top of it, and the content centres in the
-   space that is left so nothing ends up bottom-heavy.
+/* Fronts, Record and Join share one heading position. They keep the normal
+   `margin: auto` centring, but equaliseSections() in render.js gives all three
+   the same height, so centring lands every heading in the same place while the
+   group as a whole still sits in the middle of the view. Content follows the
+   heading immediately; the shorter views just leave space at the bottom.
    Home is deliberately outside this: it is a hero, not a titled section. */
 .view-section {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  margin-block: 0;
 }
 
-.view-section > .view-head { flex: none; }
-.view-section > :last-child { margin-block: auto; }
+/* Content follows the heading directly and any slack falls at the bottom.
+   Stretching the cards to fill it instead left them sparse, with stats
+   stranded hundreds of pixels below their titles. */
 
 /* --------------------------------------------------------------------------
    section headings
