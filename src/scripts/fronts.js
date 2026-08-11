@@ -18,10 +18,12 @@ export const fronts = [
     edition: 'Midnight',
     status: 'active',
     meta: 'US-Illidan · Horde · Mythic progression',
-    // labels stay generic so they cannot go stale when the tier rolls over
+    // Labels stay generic so they cannot go stale when the tier rolls over.
+    // All three describe the same raid — the guild's deepest mythic clear —
+    // and are replaced together by the Raider.IO pass.
     stats: [
       { id: 'progress', value: '9/9 M', label: 'Mythic' },
-      { id: 'world', value: '#114', label: 'World rank' },
+      { id: 'rank', value: '384 / 110', label: 'World / NA' },
     ],
     note: 'Cutting Edge cleared. Chasing Hall of Fame.',
     video: '82kn8hS_QWI',

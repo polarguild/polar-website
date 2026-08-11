@@ -183,14 +183,18 @@ async function applyLive() {
   if (!res.ok) throw new Error(`raider.io ${res.status}`);
   const data = await res.json();
 
-  // deepest mythic clear, not the most recent raid — a fresh single-boss tier
-  // would otherwise replace a full clear and read as a downgrade
-  const best = Object.values(data.raid_progression || {})
-    .reduce((a, r) => (r.mythic_bosses_killed > (a?.mythic_bosses_killed ?? -1) ? r : a), null);
+  // Deepest mythic clear, not the most recent raid — a fresh single-boss tier
+  // would otherwise replace a full clear and read as a downgrade.
+  const best = Object.entries(data.raid_progression || {})
+    .reduce((a, e) => (e[1].mythic_bosses_killed > (a?.[1].mythic_bosses_killed ?? -1) ? e : a), null);
+  if (!best || best[1].mythic_bosses_killed === 0) return;
 
-  const ranks = Object.values(data.raid_rankings || {})
-    .map(r => r.mythic?.world)
-    .filter(n => typeof n === 'number' && n > 0);
+  const [slug, progress] = best;
+
+  // Ranks must come from that same raid. Taking the best rank across all raids
+  // paired a 9/9 M tier clear with the standing from a one-boss raid, which is
+  // both flattering and not the number the raid team quotes.
+  const rank = data.raid_rankings?.[slug]?.mythic ?? {};
 
   const card = document.querySelector(`[data-front="${front.id}"]`);
   const set = (id, value) => {
@@ -198,19 +202,22 @@ async function applyLive() {
     const stat = card?.querySelector(`[data-stat="${id}"] .front-stat-value`);
     if (stat) stat.textContent = value;
   };
+  const bar = (id, value) => {
+    if (!value) return;
+    const node = document.getElementById(id);
+    if (node) node.textContent = value;
+  };
 
-  if (best?.mythic_bosses_killed > 0) {
-    set('progress', best.summary);
-    const bar = document.getElementById('statMythic');
-    if (bar) bar.textContent = best.summary;
-  }
+  set('progress', progress.summary);
+  bar('statMythic', progress.summary);
 
-  if (ranks.length) {
-    const world = `#${Math.min(...ranks)}`;
-    set('world', world);
-    const bar = document.getElementById('statWorld');
-    if (bar) bar.textContent = world;
-  }
+  // One combined figure on the card — the way the raid team quotes it —
+  // and split out in the status bar, where there is room for labels.
+  if (rank.world > 0 && rank.region > 0) set('rank', `${rank.world} / ${rank.region}`);
+  else if (rank.world > 0) set('rank', `${rank.world}`);
+
+  if (rank.world > 0) bar('statWorld', `#${rank.world}`);
+  if (rank.region > 0) bar('statRegion', `#${rank.region}`);
 }
 
 /* -------------------------------------------------------- featured video */
