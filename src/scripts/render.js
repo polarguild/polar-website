@@ -132,16 +132,25 @@ function renderRecord() {
   const body = document.getElementById('recordBody');
   if (!tabs || tabs.children.length) return;
 
-  const draw = index => {
-    const front = archivedFronts[index];
-    body.replaceChildren();
-
-    if (front.period) body.appendChild(el('p', 'record-period', front.period));
+  // Every game is built once and stacked into a single grid cell, rather than
+  // swapping the contents on each click. The cell is always as tall as the
+  // tallest game, so choosing a different one cannot change the height of the
+  // block — which is what lets the view stay vertically centred like every
+  // other view without the heading and switcher jumping.
+  const panes = archivedFronts.map(front => {
+    const pane = el('div', 'record-pane');
+    if (front.period) pane.appendChild(el('p', 'record-period', front.period));
 
     const grid = el('div', 'campaigns');
     front.campaigns.forEach(c => grid.appendChild(campaignPanel(c)));
-    body.appendChild(grid);
+    pane.appendChild(grid);
 
+    body.appendChild(pane);
+    return pane;
+  });
+
+  const select = index => {
+    panes.forEach((p, i) => p.classList.toggle('is-active', i === index));
     [...tabs.children].forEach((btn, i) =>
       btn.setAttribute('aria-selected', String(i === index)));
   };
@@ -151,11 +160,11 @@ function renderRecord() {
     const btn = el('button', null, label);
     btn.type = 'button';
     btn.setAttribute('role', 'tab');
-    btn.addEventListener('click', () => draw(i));
+    btn.addEventListener('click', () => select(i));
     tabs.appendChild(btn);
   });
 
-  draw(0);
+  select(0);
 }
 
 /* ------------------------------------------------------------ shoutouts */

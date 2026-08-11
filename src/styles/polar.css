@@ -285,12 +285,6 @@ a { color: inherit; text-decoration: none; }
 
 .view-wide { width: min(1320px, 100%); }
 
-/* Opts out of vertical centring. Any view whose content changes height while
-   you are on it — Record, when you pick a different game — must pin to the top,
-   otherwise the block re-centres and the heading and tabs jump under the
-   cursor. Content grows downward instead. */
-.view-top { margin-block: 0; }
-
 /* --------------------------------------------------------------------------
    section headings
    -------------------------------------------------------------------------- */
@@ -624,6 +618,20 @@ a { color: inherit; text-decoration: none; }
 .switch button:hover { color: var(--white); }
 .switch button[aria-selected='true'] { color: var(--white); }
 .switch button[aria-selected='true']::after { transform: scaleX(1); }
+
+/* All games occupy the same grid cell, so the block is always as tall as the
+   tallest one. Switching game therefore cannot change the height — which is
+   what keeps the heading and switcher still while the view stays centred.
+   visibility:hidden keeps the inactive panes contributing that height while
+   removing them from the tab order and the accessibility tree. */
+#recordBody { display: grid; align-items: start; }
+
+.record-pane {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.record-pane.is-active { visibility: visible; }
 
 .record-period {
   font-family: var(--display);
