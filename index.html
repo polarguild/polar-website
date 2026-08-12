@@ -25,11 +25,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="preload" as="image" href="/assets/backgrounds/bg-fantasy-ice.avif" />
-    <link href="/src/styles/polar.css" rel="stylesheet" />
+    <link href="/src/styles/polar.css?v=24" rel="stylesheet" />
   </head>
 
   <body>
-    <div class="backdrop"></div>
+    <div class="backdrop">
+      <video
+        class="backdrop-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="/assets/backgrounds/bg-fantasy-ice.avif"
+        aria-hidden="true"
+      >
+        <source src="/assets/backgrounds/bg-ice-storm.mp4?v=9" type="video/mp4" />
+      </video>
+    </div>
     <div class="grain"></div>
 
     <div class="app">
@@ -69,11 +82,11 @@
         <!-- HOME -->
         <section class="view" id="view-home" aria-label="Home">
           <div class="view-inner view-wide home">
-            <div>
+            <div class="home-copy">
               <img class="home-mark" src="/assets/polar/polar-logo-cyberpunk.avif" alt="POLAR" width="1000" height="439" fetchpriority="high" />
               <p class="home-tag">
-                THΞ BATTLΞFIΞLD ΛWΛITS<br />
-                <span>// ΛNSWΞR::THΞ_CΛLL ▚▚</span>
+                <span class="home-tag-a">THΞ BATTLΞFIΞLD ΛWΛITS</span>
+                <span class="home-tag-b">// ΛNSWΞR::THΞ_CΛLL ▚▚</span>
               </p>
 
               <div class="home-cta">
