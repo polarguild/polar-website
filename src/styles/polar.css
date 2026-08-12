@@ -991,13 +991,23 @@ a:hover .yt { opacity: 1; filter: var(--red-glow); }
   .home-mark { display: none !important; margin: 0; }
   .join { grid-template-columns: 1fr; }
 
-  /* logo is gone — pin the tagline under the header, no leftover centre */
+  /* logo is gone — pin the tagline just under the header */
   #view-home {
-    padding-top: 0;
+    padding-top: 5px;
     justify-content: flex-start;
   }
   #view-home .view-inner {
     margin: 0 auto auto;
+  }
+
+  .home-tag {
+    align-items: center;
+    font-size: clamp(11px, 5.46cqi, 30px);
+  }
+  .home-tag-a,
+  .home-tag-b {
+    text-indent: 0;
+    text-align: center;
   }
 }
 
