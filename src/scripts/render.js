@@ -287,6 +287,25 @@ function watchSections() {
   });
 }
 
+/* -------------------------------------------------------- backdrop video */
+
+// Some mobile browsers (iOS Safari, Samsung) ignore autoplay and then paint
+// a play button over the background. Kick playback as a muted inline video.
+function setupBackdropVideo() {
+  const video = document.querySelector('.backdrop-video');
+  if (!video) return;
+
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.setAttribute('playsinline', '');
+  video.setAttribute('webkit-playsinline', '');
+
+  const kick = () => { video.play().catch(() => {}); };
+  if (video.readyState >= 2) kick();
+  else video.addEventListener('canplay', kick, { once: true });
+}
+
 /* -------------------------------------------------------- featured video */
 
 // The video does not autoplay. Every browser permits autoplay only when the
@@ -322,6 +341,7 @@ export function renderAll() {
   renderFronts();
   renderRecord();
   renderShoutouts();
+  setupBackdropVideo();
   setupFeaturedVideo();
   watchSections();
 

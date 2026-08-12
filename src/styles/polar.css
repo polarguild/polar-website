@@ -123,6 +123,15 @@ a { color: inherit; text-decoration: none; }
   transform: scale(1.04);
 }
 
+/* iOS / WebKit paint a giant play overlay when autoplay is blocked */
+.backdrop-video::-webkit-media-controls,
+.backdrop-video::-webkit-media-controls-enclosure,
+.backdrop-video::-webkit-media-controls-start-playback-button,
+.backdrop-video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
 .backdrop::after {
   /* darken toward the centre so panels and headings always have contrast */
   content: '';
@@ -981,6 +990,10 @@ a:hover .yt { opacity: 1; filter: var(--red-glow); }
   .home { grid-template-columns: 1fr; }
   .home-mark { display: none; }
   .join { grid-template-columns: 1fr; }
+
+  /* logo is gone, so do not keep the leftover hero vertically centred */
+  #view-home { padding-top: 12px; }
+  #view-home .view-inner { margin-top: 0; }
 }
 
 @media (max-width: 860px) {
