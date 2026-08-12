@@ -1,4 +1,4 @@
-import { renderAll } from './src/scripts/render.js';
+import { renderAll } from './src/scripts/render.js?v=2';
 import { startRouter } from './src/scripts/router.js';
 import { startModals } from './src/scripts/dialog.js';
 

@@ -289,21 +289,36 @@ function watchSections() {
 
 /* -------------------------------------------------------- backdrop video */
 
-// Some mobile browsers (iOS Safari, Samsung) ignore autoplay and then paint
-// a play button over the background. Kick playback as a muted inline video.
+// Some mobile browsers (iOS Safari, Samsung, Brave) ignore autoplay and then
+// paint a play button over the background. Keep the <video> invisible until
+// it is actually playing so that overlay never shows; the still sits in CSS.
 function setupBackdropVideo() {
   const video = document.querySelector('.backdrop-video');
   if (!video) return;
 
   video.muted = true;
   video.defaultMuted = true;
+  video.volume = 0;
   video.playsInline = true;
   video.setAttribute('playsinline', '');
   video.setAttribute('webkit-playsinline', '');
+  video.removeAttribute('controls');
+  video.controls = false;
 
-  const kick = () => { video.play().catch(() => {}); };
+  const reveal = () => video.classList.add('is-playing');
+  const hide = () => video.classList.remove('is-playing');
+  video.addEventListener('playing', reveal);
+  video.addEventListener('pause', hide);
+  video.addEventListener('error', hide);
+
+  const kick = () => { video.play().then(reveal).catch(hide); };
   if (video.readyState >= 2) kick();
   else video.addEventListener('canplay', kick, { once: true });
+
+  // Brave (and others) only unlock autoplay after a gesture
+  const onGesture = () => kick();
+  addEventListener('pointerdown', onGesture, { once: true, passive: true });
+  addEventListener('touchstart', onGesture, { once: true, passive: true });
 }
 
 /* -------------------------------------------------------- featured video */

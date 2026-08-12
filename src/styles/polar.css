@@ -121,7 +121,13 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   filter: blur(1px);
   transform: scale(1.04);
+  /* hidden until playback starts — Brave/Chrome paint a play overlay
+     on a paused video, and the centre of the backdrop is transparent
+     enough that the triangle shows through */
+  opacity: 0;
 }
+
+.backdrop-video.is-playing { opacity: 1; }
 
 /* iOS / WebKit paint a giant play overlay when autoplay is blocked */
 .backdrop-video::-webkit-media-controls,
@@ -993,7 +999,7 @@ a:hover .yt { opacity: 1; filter: var(--red-glow); }
 
   /* logo is gone — pin the tagline just under the header */
   #view-home {
-    padding-top: 5px;
+    padding-top: 10px;
     justify-content: flex-start;
   }
   #view-home .view-inner {
