@@ -988,12 +988,17 @@ a:hover .yt { opacity: 1; filter: var(--red-glow); }
 @media (max-width: 1000px) {
   /* single column, identity first — the video follows the call to action */
   .home { grid-template-columns: 1fr; }
-  .home-mark { display: none; }
+  .home-mark { display: none !important; margin: 0; }
   .join { grid-template-columns: 1fr; }
 
-  /* logo is gone, so do not keep the leftover hero vertically centred */
-  #view-home { padding-top: 12px; }
-  #view-home .view-inner { margin-top: 0; }
+  /* logo is gone — pin the tagline under the header, no leftover centre */
+  #view-home {
+    padding-top: 0;
+    justify-content: flex-start;
+  }
+  #view-home .view-inner {
+    margin: 0 auto auto;
+  }
 }
 
 @media (max-width: 860px) {
