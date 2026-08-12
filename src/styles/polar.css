@@ -979,7 +979,7 @@ a:hover .yt { opacity: 1; filter: var(--red-glow); }
 @media (max-width: 1000px) {
   /* single column, identity first — the video follows the call to action */
   .home { grid-template-columns: 1fr; }
-  .home-mark { width: min(340px, 82%); }
+  .home-mark { display: none; }
   .join { grid-template-columns: 1fr; }
 }
 
