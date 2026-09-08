@@ -10,8 +10,9 @@ A static site with no build step, no framework and no dependencies:
 - CSS (one stylesheet, `src/styles/polar.css`)
 - Vanilla JavaScript, as ES modules
 
-No jQuery, no Webflow runtime, no CDN scripts. The only third-party request
-is Google Fonts, plus a Raider.IO call for live raid progression.
+No jQuery, no Webflow runtime, no CDN scripts. Third-party integrations include
+Google Fonts, YouTube embeds, Raider.IO for raid progression, and Discord's
+public invite endpoint for member counts. No API keys or bot tokens are used.
 
 ## Deployment
 
@@ -116,6 +117,14 @@ Things that are easy to trip over when editing:
   unavailable or omits the configured raid. An available raid with missing
   ranks displays dashes for those ranks. The status bar also has static
   fallbacks when JavaScript is disabled.
+- **Discord membership.** The homepage reads `approximate_member_count` from
+  `https://discord.com/api/v10/invites/polarguild?with_counts=true` without
+  credentials. It refreshes on load and every five minutes while the tab is
+  visible, and checks again when a stale tab becomes visible. Discord caches
+  this approximate total for five minutes, so it may lag behind the app.
+  Failed, timed-out, or invalid responses retain the last recorded count;
+  its tooltip identifies when it was recorded or checked. Keep the static
+  fallback and its date in `index.html` current when editing the site.
 - **Images are AVIF.** Everything except `assets/polar/link-preview.png` (the
   Open Graph image, which social scrapers need in a widely supported format)
   and `favicon.ico`. Encode new art with `avifenc -q 72 -s 4 source.png out.avif`,

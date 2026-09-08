@@ -181,6 +181,46 @@ function renderShoutouts() {
 
 /* ----------------------------------------------------------- live stats */
 
+function setupDiscordMemberCount() {
+  const counter = document.getElementById('statMembers');
+  if (!counter) return;
+
+  // Discord's public invite count requires no credentials and is cached for
+  // five minutes. Keep the last recorded count if a refresh is unavailable.
+  const refreshInterval = 5 * 60 * 1000;
+  let lastAttempt = 0;
+  let requestPending = false;
+
+  const refresh = async () => {
+    if (document.hidden || requestPending || Date.now() - lastAttempt < refreshInterval) return;
+    lastAttempt = Date.now();
+    requestPending = true;
+
+    try {
+      const response = await fetch('https://discord.com/api/v10/invites/polarguild?with_counts=true', {
+        credentials: 'omit',
+        signal: AbortSignal.timeout(10000),
+      });
+      if (!response.ok) return;
+
+      const data = await response.json();
+      const memberCount = data.approximate_member_count;
+      if (!Number.isSafeInteger(memberCount) || memberCount < 0) return;
+
+      counter.textContent = memberCount.toLocaleString('en-US');
+      counter.title = `Approximate Discord member count. Last checked: ${new Date().toLocaleString('en-US')}.`;
+    } catch {
+      // The recorded value and its timestamp remain visible in the tooltip.
+    } finally {
+      requestPending = false;
+    }
+  };
+
+  refresh();
+  setInterval(refresh, refreshInterval);
+  document.addEventListener('visibilitychange', refresh);
+}
+
 // Raider.IO is public, key-less and CORS-enabled. Everything it touches has a
 // sensible value in the markup already, so a failure here is invisible.
 async function applyLive() {
@@ -354,6 +394,7 @@ export function renderAll() {
   setupBackdropVideo();
   setupFeaturedVideo();
   watchSections();
+  setupDiscordMemberCount();
 
   const year = document.getElementById('footerYear');
   if (year) year.textContent = new Date().getFullYear();
