@@ -101,14 +101,21 @@ Things that are easy to trip over when editing:
 
 - **Games and results are data, not markup.** `src/scripts/fronts.js` drives
   both the Fronts cards and the Record archive. To retire a campaign, flip its
-  `status` from `active` to `concluded`; to add a game, append an entry. No
-  HTML or CSS changes.
+  `status` from `active` to `concluded`; to add a game, append an entry.
+  Games with completed `campaigns` appear in The Record, including games
+  with an active season. Retired fronts without recorded results stay out of
+  the archive. Active-front counts update from the data; keep their static
+  fallbacks in `index.html` current as well.
 - **Live progression.** A front with a `live` block is topped up from Raider.IO
-  on load (public, no API key, CORS-enabled). It takes the guild's *deepest*
-  mythic clear, not the most recent raid, so a fresh single-boss tier cannot
-  replace a full clear and read as a downgrade. The values committed in
-  `fronts.js` render on their own, so JS off or Raider.IO down degrades to
-  correct-but-frozen rather than empty — keep them roughly current anyway.
+  on load (public, no API key, CORS-enabled). `live.raid` explicitly selects
+  the current season's raid for both mythic progression and rankings, so a
+  previous season's full clear cannot replace current progress. At a season
+  rollover, archive the completed results under `campaigns`, update
+  `live.raid`, and refresh the season label and fallback statistics in
+  `fronts.js` and `index.html`. The committed values remain if Raider.IO is
+  unavailable or omits the configured raid. An available raid with missing
+  ranks displays dashes for those ranks. The status bar also has static
+  fallbacks when JavaScript is disabled.
 - **Images are AVIF.** Everything except `assets/polar/link-preview.png` (the
   Open Graph image, which social scrapers need in a widely supported format)
   and `favicon.ico`. Encode new art with `avifenc -q 72 -s 4 source.png out.avif`,

@@ -1,15 +1,15 @@
 // Every game POLAR fields a team in, past and present.
 //
 // This is the single place to edit when a campaign ends or a new one starts —
-// index.html renders both sections from these arrays, so no markup changes.
+// render.js builds both sections from these arrays.
 //
 // status: 'active'    — currently being played, shows in Active Fronts
-//         'concluded' — finished, shows in Victories
+//         'concluded' — no longer being played
+// Completed campaigns appear in The Record, even for an active game.
 //
 // A front may carry a `live` block. When present the renderer asks Raider.IO
-// for current progression and replaces the matching stat. The values written
-// here still render on their own, so the card is correct with JS disabled,
-// offline, or if Raider.IO is down.
+// for the configured raid's progression and rankings. The committed values
+// render first and remain available if Raider.IO is down.
 
 export const fronts = [
   {
@@ -17,24 +17,44 @@ export const fronts = [
     game: 'World of Warcraft',
     edition: 'Midnight',
     status: 'active',
-    meta: 'US-Illidan · Horde · Mythic progression',
-    // Labels stay generic so they cannot go stale when the tier rolls over.
-    // All three describe the same raid — the guild's deepest mythic clear —
-    // and are replaced together by the Raider.IO pass.
+    meta: 'Season 2 · US-Illidan · Horde · Mythic progression',
+    // Season 2 snapshot from Raider.IO, verified September 8, 2026.
     stats: [
-      { id: 'progress', value: '9/9 M', label: 'Mythic' },
-      { id: 'rank', value: '384 / 110', label: 'World / NA' },
+      { id: 'progress', value: '5/8 M', label: 'Mythic' },
+      { id: 'rank', value: '265 / 79', label: 'World / NA' },
     ],
-    note: 'Cutting Edge cleared. Chasing Hall of Fame.',
-    video: '82kn8hS_QWI',
+    note: 'The Venomous Abyss progression underway. Chasing Hall of Fame.',
     link: { label: 'Warcraft Logs', url: 'https://www.warcraftlogs.com/guild/us/illidan/polar' },
-    live: { source: 'raiderio', region: 'us', realm: 'illidan', name: 'polar' },
+    live: {
+      source: 'raiderio', region: 'us', realm: 'illidan', name: 'polar',
+      raid: 'the-venomous-abyss',
+    },
+    campaigns: [
+      {
+        name: 'Season 1',
+        video: '82kn8hS_QWI',
+        groups: [
+          {
+            title: 'Mythic',
+            items: [{ text: '9/9 M · Cutting Edge' }],
+          },
+          {
+            title: 'Rankings',
+            type: 'rankings',
+            items: [
+              { label: 'World', place: '#384' },
+              { label: 'NA', place: '#110' },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     id: 'ascension',
     game: 'Ascension',
     edition: 'Conquest of Azeroth',
-    status: 'active',
+    status: 'concluded',
     meta: 'Voljin · 21 classes · 70 specs',
     stats: [
       { id: 'roster', value: '92+', label: 'Roster' },
@@ -55,7 +75,7 @@ export const fronts = [
     id: 'lineage2',
     game: 'Lineage 2',
     edition: 'Project LU4',
-    status: 'active',
+    status: 'concluded',
     meta: 'Remastered Classic · fresh start',
     stats: [{ id: 'since', value: 'JUL 31', label: 'Fresh start' }],
     note: 'New front, forming groups.',
@@ -234,4 +254,4 @@ export const fronts = [
 ];
 
 export const activeFronts = fronts.filter(f => f.status === 'active');
-export const archivedFronts = fronts.filter(f => f.status === 'concluded');
+export const archivedFronts = fronts.filter(front => front.campaigns?.length);

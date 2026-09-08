@@ -1,4 +1,4 @@
-import { activeFronts, archivedFronts } from './fronts.js';
+import { activeFronts, archivedFronts } from './fronts.js?v=3';
 import { subscribers } from './subscribers.js';
 import { onRoute } from './router.js';
 
@@ -84,8 +84,9 @@ function renderFronts() {
   activeFronts.forEach(f => frag.appendChild(frontCard(f)));
   mount.appendChild(frag);
 
-  const count = document.getElementById('statFronts');
-  if (count) count.textContent = String(activeFronts.length);
+  document.querySelectorAll('[data-active-front-count]').forEach(count => {
+    count.textContent = String(activeFronts.length);
+  });
 }
 
 /* ---------------------------------------------------------------- record */
@@ -156,7 +157,8 @@ function renderRecord() {
   };
 
   archivedFronts.forEach((front, i) => {
-    const label = front.subtitle ? `${front.game} ${front.subtitle}` : front.game;
+    const edition = front.subtitle || front.edition;
+    const label = edition ? `${front.game} ${edition}` : front.game;
     const btn = el('button', null, label);
     btn.type = 'button';
     btn.setAttribute('role', 'tab');
@@ -185,31 +187,23 @@ async function applyLive() {
   const front = activeFronts.find(f => f.live?.source === 'raiderio');
   if (!front) return;
 
-  const { region, realm, name } = front.live;
+  const { region, realm, name, raid } = front.live;
+  if (!raid) return;
   const res = await fetch(
     `https://raider.io/api/v1/guilds/profile?region=${region}&realm=${realm}` +
     `&name=${encodeURIComponent(name)}&fields=raid_progression%2Craid_rankings`);
   if (!res.ok) throw new Error(`raider.io ${res.status}`);
   const data = await res.json();
 
-  // Single-boss raids do not count — a 1/1 M on a one-boss raid is not a tier
-  // and the raid team does not quote it. Raider.IO currently lists two
-  // (sporefall, the-tidebound-grotto), so filter on boss count rather than
-  // naming them.
-  const tiers = Object.entries(data.raid_progression || {})
-    .filter(([, r]) => r.total_bosses > 1);
+  // Track this season's configured raid, including zero mythic kills. A
+  // completed earlier season or a one-boss raid must never replace it.
+  const progress = data.raid_progression?.[raid];
+  if (!progress || !(progress.total_bosses > 0) ||
+      !Number.isInteger(progress.mythic_bosses_killed) ||
+      progress.mythic_bosses_killed < 0 ||
+      progress.mythic_bosses_killed > progress.total_bosses) return;
 
-  // Of the real tiers, the deepest mythic clear.
-  const best = tiers
-    .reduce((a, e) => (e[1].mythic_bosses_killed > (a?.[1].mythic_bosses_killed ?? -1) ? e : a), null);
-  if (!best || best[1].mythic_bosses_killed === 0) return;
-
-  const [slug, progress] = best;
-
-  // Ranks must come from that same raid. Taking the best rank across all raids
-  // paired a 9/9 M tier clear with the standing from a one-boss raid, which is
-  // both flattering and not the number the raid team quotes.
-  const rank = data.raid_rankings?.[slug]?.mythic ?? {};
+  const rank = data.raid_rankings?.[raid]?.mythic ?? {};
 
   const card = document.querySelector(`[data-front="${front.id}"]`);
   const set = (id, value) => {
@@ -223,16 +217,17 @@ async function applyLive() {
     if (node) node.textContent = value;
   };
 
-  set('progress', progress.summary);
-  bar('statMythic', progress.summary);
+  const summary = `${progress.mythic_bosses_killed}/${progress.total_bosses} M`;
+  set('progress', summary);
+  bar('statMythic', summary);
 
   // One combined figure on the card — the way the raid team quotes it —
   // and split out in the status bar, where there is room for labels.
-  if (rank.world > 0 && rank.region > 0) set('rank', `${rank.world} / ${rank.region}`);
-  else if (rank.world > 0) set('rank', `${rank.world}`);
-
-  if (rank.world > 0) bar('statWorld', `#${rank.world}`);
-  if (rank.region > 0) bar('statRegion', `#${rank.region}`);
+  const world = rank.world > 0 ? String(rank.world) : '—';
+  const regional = rank.region > 0 ? String(rank.region) : '—';
+  set('rank', `${world} / ${regional}`);
+  bar('statWorld', rank.world > 0 ? `#${rank.world}` : '—');
+  bar('statRegion', rank.region > 0 ? `#${rank.region}` : '—');
 }
 
 /* ------------------------------------------------------ view alignment */
