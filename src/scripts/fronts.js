@@ -51,6 +51,22 @@ export const fronts = [
     ],
   },
   {
+    id: 'wow-forever',
+    game: 'World of Warcraft',
+    edition: 'Forever',
+    status: 'active',
+    meta: 'A new journey through Azeroth',
+    stats: [
+      { id: 'phase', value: 'BETA', label: 'Phase' },
+      { id: 'release', value: 'NOV 4', label: 'Release · 2026' },
+    ],
+    note: 'Currently in beta. Launching November 4, 2026.',
+    link: {
+      label: 'Official announcement',
+      url: 'https://worldofwarcraft.blizzard.com/en-us/news/24304160/the-world-of-warcraft-forever-beta-now-live',
+    },
+  },
+  {
     id: 'ascension',
     game: 'Ascension',
     edition: 'Conquest of Azeroth',

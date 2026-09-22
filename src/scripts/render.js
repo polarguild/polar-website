@@ -1,4 +1,4 @@
-import { activeFronts, archivedFronts } from './fronts.js?v=3';
+import { activeFronts, archivedFronts } from './fronts.js?v=5';
 import { subscribers } from './subscribers.js';
 import { onRoute } from './router.js';
 
